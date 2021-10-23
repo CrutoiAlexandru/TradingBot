@@ -1,11 +1,27 @@
-import pandas as pd 
-
+import pandas   as pd 
 import yfinance as yf
 
+def exit():
+    global exit_command
+    exit_command = ["quit", "QUIT", "Quit", "Q", "q"]
+    print("To exit enter: " + str(exit_command))
+
 def gather():
-    data = yf.download(["TSLA", "GOOGL"],
-    start = '2020-09-15', 
-    end = '2020-11-15',
-    progress = False)
+    stock = input("Enter the desires stock: ")
+
+    if stock in exit_command:
+        print("Goodbye!")
+        return 0
+    
+    data = yf.download(
+        tickers = [stock],
+        period = "1d",
+        progress = False,
+        auto_adjust = True,
+        actions = "inline")
 
     print(data.head())
+    gather()
+
+    
+

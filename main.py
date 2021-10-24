@@ -1,5 +1,5 @@
-import data_gather as dg
+import commands
 
-dg.exit()
+commands.commands_definition()
 
-dg.gather()
+commands.input_command()

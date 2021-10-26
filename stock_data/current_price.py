@@ -1,4 +1,4 @@
-import yfinnace as yf
+import yfinance as yf
 
 def current_price():
     stock = yf.Ticker("TSLA")

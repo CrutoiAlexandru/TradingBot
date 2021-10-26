@@ -1,5 +1,7 @@
-import commands
+import stock_data.high_prices_average as hpa 
 
-commands.commands_definition()
+hpa.high_prices_average()
 
-commands.input_command()
+#commands.commands_definition()
+
+#commands.input_command() 

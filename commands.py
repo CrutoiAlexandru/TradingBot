@@ -24,6 +24,7 @@ def is_data_dir():
         os.mkdir("csv_stock_data")
         
 #gather stock data about specified stock
+#split into 3M low and high prices
 def gather_command(value):
     stock = value#input("Enter the desires stock: ")
     data_list = list()

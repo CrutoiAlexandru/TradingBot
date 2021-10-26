@@ -1,8 +1,6 @@
 import yfinance as yf 
 import pandas   as pd
 
-
-
 def high_prices_average():
     data_list           = list()
     row                 = 0
@@ -29,7 +27,3 @@ def high_prices_average():
     high_prices_average = high_prices_sum/ row
     
     print(high_prices_average)
-
-    #df.to_csv('csv_stock_data/'+'tsla'+'.csv')
-
-    #print(df)    

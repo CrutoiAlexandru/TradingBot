@@ -1,6 +1,7 @@
 import yfinance as yf 
 import pandas   as pd
 
+#get the average low price for a 3 month period
 def low_prices_average():
     data_list          = list()
     row                = 0

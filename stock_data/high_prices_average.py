@@ -1,6 +1,7 @@
 import yfinance as yf 
 import pandas   as pd
 
+#get the average high price for a 3 month period
 def high_prices_average():
     data_list           = list()
     row                 = 0

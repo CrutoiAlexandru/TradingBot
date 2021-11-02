@@ -10,3 +10,5 @@ def acc_data():
     r = requests.get(ACCOUNT_URL, headers = HEADER) 
 
     print(r.content)
+
+acc_data()

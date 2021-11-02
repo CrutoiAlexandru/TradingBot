@@ -10,12 +10,3 @@ def acc_data():
     r = requests.get(ACCOUNT_URL, headers = HEADER) 
 
     print(r.content)
-
-def market_data():
-    MARKET_URL = "https://stream.data.alpaca.markets/v2/iex"
-
-    r = requests.get(MARKET_URL, {"bars" : "AAPL"},headers = HEADER)
-
-    print(r.content)
-
-market_data()

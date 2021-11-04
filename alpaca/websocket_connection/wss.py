@@ -3,10 +3,21 @@ import json
 import time
 import config
 
+global is_trading
+is_trading = False
+
 #show websocket message
 def on_message(ws, message):
     print("message:")
     print(message)
+
+    #only get the current price is there is such data in the received message
+    if "p" in message:
+        json_message = json.loads(message)
+        price = json.dumps(json_message["data"])
+        price = json.loads(price)
+
+        print(price['p'])
 
 #show websocket error
 def on_error(ws, error):
@@ -33,7 +44,7 @@ def on_open(ws):
 #get data for a certain stock(s)
 def get_stock(ws):
     listen = {"action" : "listen", "data" : { "streams" : ["T.TSLA"]}}
-
+    
     ws.send(json.dumps(listen))
 
 #find out if the market is open

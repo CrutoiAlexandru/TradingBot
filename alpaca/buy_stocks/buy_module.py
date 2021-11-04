@@ -2,6 +2,7 @@ import requests
 import config
 import json
 
+#do a request to buy a certain stock
 def buy_stock(symbols):
     ALPACA_URL = "https://paper-api.alpaca.markets/v2/orders"
     

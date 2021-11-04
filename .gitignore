@@ -130,3 +130,6 @@ dmypy.json
 
 #personal account id's
 config.py
+
+#ignore jsons
+.json

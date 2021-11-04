@@ -1,5 +1,5 @@
-import stock_data.high_prices_average as hpa 
-import stock_data.low_prices_average  as lpa
+import yfin.high_prices_average        as hpa 
+import yfin.low_prices_average         as lpa
 import alpaca.websocket_connection.wss as ws
 
 if __name__ == '__main__':

@@ -1,8 +1,7 @@
 import websocket
 import json
-
-ACC_KEY     = 'PKQ107FOKBD3MUNC0XB7'
-SECRET_KEY  = 'hgF4BsJJvutyt86rXiX9kLoRlrjDIyqUggOCn8i7'
+import time
+import config
 
 def on_message(ws, message):
     print("message:")
@@ -19,8 +18,8 @@ def on_open(ws):
 
     data = {"action": "authenticate",
         "data": {
-            "key_id": ACC_KEY,
-            "secret_key": SECRET_KEY,
+            "key_id": config.ACC_KEY,
+            "secret_key": config.SECRET_KEY,
         }
     }
     ws.send(json.dumps(data))
@@ -35,11 +34,14 @@ def get_stock(ws):
 if __name__ == "__main__":
     socket = "wss://data.alpaca.markets/stream"
 
-    ws = websocket.WebSocketApp(socket,
-                              on_open=on_open,
-                              on_message=on_message,
-                              on_error=on_error,
-                              on_close=on_close
-                            )
+    if((time.gmtime().tm_hour >= 13 and time.gmtime().tm_hour < 20) and time.gmtime().tm_min >= 29):
+        ws = websocket.WebSocketApp(socket,
+                                on_open=on_open,
+                                on_message=on_message,
+                                on_error=on_error,
+                                on_close=on_close
+                                )
 
-    ws.run_forever()    
+        ws.run_forever()  
+    else:
+        print("Market is closed atm!")

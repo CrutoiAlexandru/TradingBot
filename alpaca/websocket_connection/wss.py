@@ -3,9 +3,6 @@ import json
 import time
 import config
 
-global is_trading
-is_trading = False
-
 #show websocket message
 def on_message(ws, message):
     print("message: ", message)

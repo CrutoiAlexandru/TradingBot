@@ -36,12 +36,19 @@ def get_stock(ws):
 
     ws.send(json.dumps(listen))
 
+#find out if the market is open
+def market_status():
+    if((time.gmtime().tm_hour > 13 and time.gmtime().tm_hour < 20) or (time.gmtime().tm_hour == 8 and time.gmtime().tm_min > 29)):
+        return True
+    else:
+        return False
+
 #function for websocket connection
 def ws_connection():
     socket = "wss://data.alpaca.markets/stream"
 
     #if the market is open connect to websocket
-    if((time.gmtime().tm_hour >= 13 and time.gmtime().tm_hour < 20) and time.gmtime().tm_min >= 29):
+    if market_status():
         ws = websocket.WebSocketApp(socket,
                                 on_open=on_open,
                                 on_message=on_message,

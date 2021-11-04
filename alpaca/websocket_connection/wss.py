@@ -8,11 +8,11 @@ is_trading = False
 
 #show websocket message
 def on_message(ws, message):
-    print("message:")
-    print(message)
+    print("message: ", message)
 
     #only get the current price is there is such data in the received message
     if "p" in message:
+        #get the current price on message for a buying/selling oportunity at every received message
         json_message = json.loads(message)
         price = json.dumps(json_message["data"])
         price = json.loads(price)

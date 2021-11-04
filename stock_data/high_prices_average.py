@@ -8,6 +8,7 @@ def high_prices_average():
     high_prices_sum     = 0
     high_prices_average = 0
 
+    #download stock(s) data from yfinance
     stock = yf.download(
         tickers     = ['tsla'],
         period      = "3mo",
@@ -25,6 +26,7 @@ def high_prices_average():
         high_prices_sum += df.iat[row, 0]
         row += 1
     
+    #calculate the average price
     high_prices_average = high_prices_sum/ row
     
     print(high_prices_average)

@@ -8,6 +8,7 @@ def low_prices_average():
     low_prices_sum     = 0
     low_prices_average = 0
 
+    #download stock(s) data from yfinance
     stock = yf.download(
         tickers     = ['tsla'],
         period      = "3mo",
@@ -25,6 +26,7 @@ def low_prices_average():
         low_prices_sum  += df.iat[row, 0]
         row += 1
     
+    #calculate the average price
     low_prices_average = low_prices_sum / row
     
     print(low_prices_average)

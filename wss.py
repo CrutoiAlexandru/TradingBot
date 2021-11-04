@@ -3,16 +3,20 @@ import json
 import time
 import config
 
+#show websocket message
 def on_message(ws, message):
     print("message:")
     print(message)
 
+#show websocket error
 def on_error(ws, error):
     print(error)
 
+#show when the websocket connection closed
 def on_close(ws, close_status_code, close_msg):
     print("### closed ###")
 
+#on connection open authenticate to personal account
 def on_open(ws):
     print("opened")
 
@@ -26,14 +30,17 @@ def on_open(ws):
 
     get_stock(ws)
 
+#get data for a certain stock(s)
 def get_stock(ws):
     listen = {"action" : "listen", "data" : { "streams" : ["T.TSLA"]}}
 
     ws.send(json.dumps(listen))
 
-if __name__ == "__main__":
+#function for websocket connection
+def ws_connection():
     socket = "wss://data.alpaca.markets/stream"
 
+    #if the market is open connect to websocket
     if((time.gmtime().tm_hour >= 13 and time.gmtime().tm_hour < 20) and time.gmtime().tm_min >= 29):
         ws = websocket.WebSocketApp(socket,
                                 on_open=on_open,

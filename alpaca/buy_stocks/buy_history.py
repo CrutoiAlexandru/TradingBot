@@ -25,6 +25,8 @@ def buy_history(symbol):
         else:
             index = index + 1
 
+    #return true if our last symbol action was a buy
+    #made so we know if we have space to buy or if we should only sell
     if req["side"] == "buy":
         return True
     else:

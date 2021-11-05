@@ -8,11 +8,10 @@ import trader.algo                     as algo
 
 if __name__ == '__main__':
     # bm.buy_stock("TSLA")
-    # sm.sell_stock("AAPL")
+    # sm.sell_stock("TSLA")
     # print(bh.buy_history("AAPL"))
+    # print(bh.buy_history("TSLA"))
 
-    algo.good_to_buy(120, "TSLA")
-    
     ws.ws_connection()
     # hpa.high_prices_average()
     # lpa.low_prices_average()

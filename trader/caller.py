@@ -25,21 +25,18 @@ def caller(message):
         price = json.loads(price)
         price = price['p']
 
-        print(price)
-
         #see what symbol the message returns
-        symbol = json.dumps(json_message["data"])
-        symbol = json.loads(symbol)
-        symbol = symbol["order"]
-        symbol = json.loads(symbol)
-        symbol = symbol["symbol"]
-
-        print(symbol)
+        #in order to strictly get the symbol from the message we need to remove a few characters
+        #we follow the message allways so we can't make mistakes about the stock we are curently interested in
+        symbol = json.dumps(json_message["stream"])
+        symbol = symbol.replace("T.", "")
+        symbol = symbol.replace('"', "")
+        
+        print(symbol, " : ", price)
 
         #see if the received symbol is already bought
         #if the symbol is bought look to sell, otherwise look to buy
         #these functions only return booleans
-        print(bh.buy_history(symbol))
         if bh.buy_history(symbol):
             #we have the stock now we sell it
             if algo.good_to_sell(price, symbol):

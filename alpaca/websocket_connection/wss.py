@@ -6,8 +6,10 @@ import trader.status as status
 import trader.caller as caller
 
 #show websocket message
-def on_message(ws, message):
-    print("message: ", message)
+def on_message(ws, message):\
+    #we don't need to see the whole message
+    #if the user wants he cand uncomment the print to analyse it
+    #print("message: ", message)
 
     #make the call to either buy or sell
     caller.caller(message)
@@ -22,7 +24,7 @@ def on_close(ws, close_status_code, close_msg):
 
 #on connection open authenticate to personal account
 def on_open(ws):
-    print("opened")
+    print("### opened ###")
 
     data = {"action": "authenticate",
         "data": {

@@ -4,6 +4,7 @@ import trading_stocks                 as ts
 import alpaca.buy_stocks.buy_history  as bh
 import alpaca.buy_stocks.buy_module   as bm
 import alpaca.sell_stocks.sell_module as sm
+import trader.algo                    as algo
 
 #get data for a certain stock(s)
 def get_stock(ws):
@@ -41,13 +42,13 @@ def caller(message):
         print(bh.buy_history(symbol))
         if bh.buy_history(symbol):
             #we have the stock now we sell it
-            if algo.good_to_sell(price):
+            if algo.good_to_sell(price, symbol):
                 sm.sell_stock(symbol)
             else:
                 print("No sell!")
         else:
             #we don't have the stock now we buy it
-            if algo.good_to_buy(price):
+            if algo.good_to_buy(price, symbol):
                 bm.buy_stock(symbol)
             else:
                 print("No buy!")

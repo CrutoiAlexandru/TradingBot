@@ -4,12 +4,14 @@ import alpaca.websocket_connection.wss as ws
 import alpaca.buy_stocks.buy_history   as bh
 import alpaca.buy_stocks.buy_module    as bm
 import alpaca.sell_stocks.sell_module  as sm
+import trader.algo                     as algo
 
 if __name__ == '__main__':
     # bm.buy_stock("TSLA")
     # sm.sell_stock("AAPL")
     # print(bh.buy_history("AAPL"))
 
+    algo.good_to_buy(120, "TSLA")
     
     ws.ws_connection()
     # hpa.high_prices_average()

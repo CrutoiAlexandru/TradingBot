@@ -8,9 +8,9 @@ import alpaca.sell_stocks.sell_module  as sm
 if __name__ == '__main__':
     # bm.buy_stock("TSLA")
     # sm.sell_stock("AAPL")
-    print(bh.buy_history("AAPL"))
+    # print(bh.buy_history("AAPL"))
 
     
-    # ws.ws_connection()
+    ws.ws_connection()
     # hpa.high_prices_average()
     # lpa.low_prices_average()

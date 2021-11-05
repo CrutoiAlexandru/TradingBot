@@ -2,19 +2,15 @@ import websocket
 import json
 import time
 import config
+import trader.status as status
+import trader.caller as caller
 
 #show websocket message
 def on_message(ws, message):
     print("message: ", message)
 
-    #only get the current price is there is such data in the received message
-    if "p" in message:
-        #get the current price on message for a buying/selling oportunity at every received message
-        json_message = json.loads(message)
-        price = json.dumps(json_message["data"])
-        price = json.loads(price)
-
-        print(price['p'])
+    #make the call to either buy or sell
+    caller.caller(message)
 
 #show websocket error
 def on_error(ws, error):
@@ -36,27 +32,15 @@ def on_open(ws):
     }
     ws.send(json.dumps(data))
 
-    get_stock(ws)
-
-#get data for a certain stock(s)
-def get_stock(ws):
-    listen = {"action" : "listen", "data" : { "streams" : ["T.TSLA"]}}
-    
-    ws.send(json.dumps(listen))
-
-#find out if the market is open
-def market_status():
-    if((time.gmtime().tm_hour > 13 and time.gmtime().tm_hour < 20) or (time.gmtime().tm_hour == 8 and time.gmtime().tm_min > 29)):
-        return True
-    else:
-        return False
+    #get data for a certain stock
+    caller.get_stock(ws)
 
 #function for websocket connection
 def ws_connection():
     socket = "wss://data.alpaca.markets/stream"
 
     #if the market is open connect to websocket
-    if market_status():
+    if status.market_status():
         ws = websocket.WebSocketApp(socket,
                                 on_open=on_open,
                                 on_message=on_message,

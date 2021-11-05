@@ -34,8 +34,6 @@ def caller(message):
         symbol = symbol.replace("T.", "")
         symbol = symbol.replace('"', "")
         
-        # print(symbol, " : ", price)
-
         #see if the received symbol is already bought
         #we print argumentation of our actions for ease of use
         #if the symbol is bought look to sell, otherwise look to buy

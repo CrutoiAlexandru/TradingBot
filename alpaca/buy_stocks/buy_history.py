@@ -18,12 +18,18 @@ def buy_history(symbol):
     index = 0
 
     #check for our symbol
-    while req:
+    while index < len(req):
         if req[index]["symbol"] == symbol:
             req = req[index]
             break
         else:
             index = index + 1
+
+    #if our index is bigger than our stock database it means the symbol
+    #was not found, so it means we never did any action concerning it
+    #we can buy freely
+    if index >= len(req):
+        return False
 
     #return true if our last symbol action was a buy
     #made so we know if we have space to buy or if we should only sell

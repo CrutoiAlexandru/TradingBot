@@ -29,4 +29,4 @@ def low_prices_average(symbol):
     #calculate the average price per wanted time
     low_prices_average = low_prices_sum / row
     
-    print(low_prices_average)
+    return low_prices_average

@@ -29,4 +29,4 @@ def high_prices_average(symbol):
     #calculate the average price per wanted time
     high_prices_average = high_prices_sum/ row
     
-    print(high_prices_average)
+    return high_prices_average

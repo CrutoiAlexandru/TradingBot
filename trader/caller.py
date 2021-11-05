@@ -5,6 +5,8 @@ import alpaca.buy_stocks.buy_history  as bh
 import alpaca.buy_stocks.buy_module   as bm
 import alpaca.sell_stocks.sell_module as sm
 import trader.algo                    as algo
+import yfin.high_prices_average       as hpa
+import yfin.low_prices_average        as lpa
 
 #get data for a certain stock(s)
 def get_stock(ws):
@@ -32,20 +34,25 @@ def caller(message):
         symbol = symbol.replace("T.", "")
         symbol = symbol.replace('"', "")
         
-        print(symbol, " : ", price)
+        # print(symbol, " : ", price)
 
         #see if the received symbol is already bought
+        #we print argumentation of our actions for ease of use
         #if the symbol is bought look to sell, otherwise look to buy
         #these functions only return booleans
         if bh.buy_history(symbol):
             #we have the stock now we sell it
             if algo.good_to_sell(price, symbol):
+                print(symbol, " : ", price, " > ", hpa.high_prices_average(symbol))
                 sm.sell_stock(symbol)
             else:
+                print(symbol, " : ", price, " < ", hpa.high_prices_average(symbol))
                 print("No sell!")
         else:
             #we don't have the stock now we buy it
             if algo.good_to_buy(price, symbol):
+                print(symbol, " : ", price, " < ", lpa.low_prices_average(symbol))
                 bm.buy_stock(symbol)
             else:
+                print(symbol, " : ", price, " > ", lpa.low_prices_average(symbol))
                 print("No buy!")

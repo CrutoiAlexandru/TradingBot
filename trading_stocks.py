@@ -1,3 +1,3 @@
 #retain a list of the current trading stocks
 
-stocks = ["TSLA", "AAPL"]
+stocks = ["AMD", "ETSY", "DIS", "TSLA", "ROKU"]

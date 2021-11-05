@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # sm.sell_stock("TSLA")
     # print(bh.buy_history("AAPL"))
     # print(bh.buy_history("TSLA"))
-
+    
     ws.ws_connection()
     # hpa.high_prices_average()
     # lpa.low_prices_average()

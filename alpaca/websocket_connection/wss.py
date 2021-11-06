@@ -50,6 +50,6 @@ def ws_connection():
                                 on_close=on_close
                                 )
 
-        ws.run_forever()  
+        ws.run_forever(ping_interval = 60, ping_timeout = 30)  
     else:
         print("Market is closed atm!")
